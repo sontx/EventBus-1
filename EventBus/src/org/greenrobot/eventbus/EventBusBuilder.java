@@ -19,6 +19,7 @@ import android.os.Looper;
 
 import org.greenrobot.eventbus.android.AndroidLogger;
 import org.greenrobot.eventbus.meta.SubscriberInfoIndex;
+import org.greenrobot.eventbus.support.SwingMainThreadSupport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +48,11 @@ public class EventBusBuilder {
     MainThreadSupport mainThreadSupport;
 
     EventBusBuilder() {
+    }
+
+    public EventBusBuilder mainThreadSupport(MainThreadSupport mainThreadSupport) {
+        this.mainThreadSupport = mainThreadSupport;
+        return this;
     }
 
     /** Default: true */

@@ -15,7 +15,7 @@
  */
 package org.greenrobot.eventbus;
 
-final class Subscription {
+public final class Subscription {
     final Object subscriber;
     final SubscriberMethod subscriberMethod;
     /**

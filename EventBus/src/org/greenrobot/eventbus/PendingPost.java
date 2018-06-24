@@ -18,8 +18,8 @@ package org.greenrobot.eventbus;
 import java.util.ArrayList;
 import java.util.List;
 
-final class PendingPost {
-    private final static List<PendingPost> pendingPostPool = new ArrayList<PendingPost>();
+public final class PendingPost {
+    private final static List<PendingPost> pendingPostPool = new ArrayList<>();
 
     Object event;
     Subscription subscription;
@@ -30,7 +30,7 @@ final class PendingPost {
         this.subscription = subscription;
     }
 
-    static PendingPost obtainPendingPost(Subscription subscription, Object event) {
+    public static PendingPost obtainPendingPost(Subscription subscription, Object event) {
         synchronized (pendingPostPool) {
             int size = pendingPostPool.size();
             if (size > 0) {

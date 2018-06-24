@@ -213,7 +213,7 @@ public class EventBus {
      * poster.
      */
     private boolean isMainThread() {
-        return mainThreadSupport != null ? mainThreadSupport.isMainThread() : true;
+        return mainThreadSupport == null || mainThreadSupport.isMainThread();
     }
 
     public synchronized boolean isRegistered(Object subscriber) {
@@ -504,7 +504,7 @@ public class EventBus {
         }
     }
 
-    void invokeSubscriber(Subscription subscription, Object event) {
+    public void invokeSubscriber(Subscription subscription, Object event) {
         try {
             subscription.subscriberMethod.method.invoke(subscription.subscriber, event);
         } catch (InvocationTargetException e) {

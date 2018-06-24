@@ -16,11 +16,11 @@
 
 package org.greenrobot.eventbus;
 
-final class PendingPostQueue {
+public final class PendingPostQueue {
     private PendingPost head;
     private PendingPost tail;
 
-    synchronized void enqueue(PendingPost pendingPost) {
+    public synchronized void enqueue(PendingPost pendingPost) {
         if (pendingPost == null) {
             throw new NullPointerException("null cannot be enqueued");
         }
