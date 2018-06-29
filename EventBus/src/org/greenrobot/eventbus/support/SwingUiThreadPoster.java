@@ -5,6 +5,7 @@ import org.greenrobot.eventbus.Poster;
 import org.greenrobot.eventbus.Subscription;
 
 import javax.swing.*;
+import java.lang.reflect.InvocationTargetException;
 
 public class SwingUiThreadPoster implements Poster {
     private final EventBus eventBus;
@@ -14,6 +15,9 @@ public class SwingUiThreadPoster implements Poster {
     }
 
     public void enqueue(final Subscription subscription, final Object event) {
-        SwingUtilities.invokeLater(() -> eventBus.invokeSubscriber(subscription, event));
+        try {
+            SwingUtilities.invokeAndWait(() -> eventBus.invokeSubscriber(subscription, event));
+        } catch (InterruptedException | InvocationTargetException ignored) {
+        }
     }
 }
