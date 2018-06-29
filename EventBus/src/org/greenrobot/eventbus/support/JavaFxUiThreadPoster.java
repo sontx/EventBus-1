@@ -14,11 +14,6 @@ public class JavaFxUiThreadPoster implements Poster {
 
     @Override
     public void enqueue(final Subscription subscription, final Object event) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                eventBus.invokeSubscriber(subscription, event);
-            }
-        });
+        Platform.runLater(() -> eventBus.invokeSubscriber(subscription, event));
     }
 }

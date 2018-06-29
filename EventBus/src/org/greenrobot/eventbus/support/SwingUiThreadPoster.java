@@ -14,11 +14,6 @@ public class SwingUiThreadPoster implements Poster {
     }
 
     public void enqueue(final Subscription subscription, final Object event) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                eventBus.invokeSubscriber(subscription, event);
-            }
-        });
+        SwingUtilities.invokeLater(() -> eventBus.invokeSubscriber(subscription, event));
     }
 }
